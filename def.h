@@ -5,7 +5,12 @@
 #include "SDL2_image/SDL_image.h"
 #include <string>
 #include <iostream>
+                        // random
+#include <cstdlib>
+#include <ctime>
 #include <random>
+
+#include <queue>
 
 const int SCREEN_WIDTH  = 428;           // 640
 const int SCREEN_HEIGHT = 748;          // 480
@@ -23,6 +28,7 @@ void loadMedia();
 void close();
 
 void init(){
+    srand(time(0));
     SDL_Init( SDL_INIT_VIDEO );
     
     //Create window

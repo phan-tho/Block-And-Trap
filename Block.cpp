@@ -47,6 +47,8 @@ int main( int argc, char* argv[] ){
     bool quit = false;
     SDL_Event e;
     
+    std::queue<Block> Blocks;
+    
     Block block;
     
     while( !quit ){
@@ -63,7 +65,7 @@ int main( int argc, char* argv[] ){
         
         // move and render block
         block.move();
-        block.render();
+        if(block.PosY >= CEILING)      block.render();
         
         
         //Update screen
