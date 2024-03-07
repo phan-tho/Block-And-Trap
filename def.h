@@ -21,6 +21,7 @@ const int lPIVOT  = 40;
 const int rPIVOT  = 390;
 
 const int vGEN_BLOCK = 30;
+const int Denta_Y    = 3;
 
 SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
