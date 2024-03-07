@@ -10,7 +10,7 @@
 #include <ctime>
 #include <random>
 
-#include <queue>
+#include <deque>
 
 const int SCREEN_WIDTH  = 428;           // 640
 const int SCREEN_HEIGHT = 748;          // 480
@@ -19,6 +19,8 @@ const int CEILING = 90;
 const int FLOOR   = 666;
 const int lPIVOT  = 40;
 const int rPIVOT  = 390;
+
+const int vGEN_BLOCK = 30;
 
 SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;

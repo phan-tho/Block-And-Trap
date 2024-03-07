@@ -5,13 +5,14 @@
 LTexture gBackground;
 LTexture gBlock;
 
-struct Block{
+class Block{
+public:
     const int BLOCK_HEIGHT = 10;
     const int BLOCK_WIDTH  = 65;
     
     int Denta_Y = 3;
     
-    int PosX, PosY;
+    int PosY;
     
     Block();
     
@@ -20,6 +21,8 @@ struct Block{
     void end();
     
     void render();
+private:
+    int PosX;
 };
 
 Block::Block(){
@@ -47,9 +50,10 @@ int main( int argc, char* argv[] ){
     bool quit = false;
     SDL_Event e;
     
-    std::queue<Block> Blocks;
+    std::deque<Block> Blocks;
+    int cnt = 0;
     
-    Block block;
+//    Block block;
     
     while( !quit ){
         while( SDL_PollEvent( &e ) != 0 ){
@@ -64,8 +68,21 @@ int main( int argc, char* argv[] ){
         gBackground.render(0, 0, NULL);
         
         // move and render block
-        block.move();
-        if(block.PosY >= CEILING)      block.render();
+        
+        if( cnt++ % vGEN_BLOCK == 0){
+            Block block;
+            Blocks.push_back(block);
+        }
+        
+        for(auto it = Blocks.begin(); it != Blocks.end(); it++){
+            (*it).move();
+        }
+        
+        if( ( *Blocks.begin() ).PosY <= CEILING )           Blocks.pop_front();
+        
+        for(auto it = Blocks.begin(); it != Blocks.end(); it++){
+            (*it).render();
+        }
         
         
         //Update screen
